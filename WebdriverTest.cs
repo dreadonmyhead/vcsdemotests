@@ -49,6 +49,7 @@ namespace NewDemoProject
             IWebElement resultElement = chromeDriver.FindElement(By.Id("display"));
            
             Assert.AreEqual(myText, resultElement.Text, "Text is not the same");
+
             chromeDriver.Quit();
         }
 
