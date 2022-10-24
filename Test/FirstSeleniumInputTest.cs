@@ -1,42 +1,19 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System;
-using NewDemoProject.Page;
 
-namespace NewDemoProject.Test
+namespace MyDemo.Test
 {
-    public class FirstSeleniumInputTest
+    public class FirstSeleniumInputTest : BaseTest
     {
-        private static IWebDriver chromeDriver;
-
-        [OneTimeSetUp]
-        public static void OneTimeSetup()
-        {
-            chromeDriver = new ChromeDriver();
-            chromeDriver.Manage().Window.Maximize();
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-
-        }
-
-        [OneTimeTearDown]
-        public static void OneTimeTearDown()
-        {
-            chromeDriver.Quit();
-        }
-
-
+     
         [TestCase("vera", TestName = "Irasom teksta vera")]
         [TestCase("sdfsdfsdf", TestName = "Irasom teksta sdfsdfsdf")]
         [TestCase("null", TestName = "Irasom teksta null")]
         public static void TestFirstInput(string myText)
         {
-            FirstSeleniumInputPage page = new FirstSeleniumInputPage(chromeDriver);
-
-            page.NavigateToPage();
-            page.InsertTextToInputField(myText);
-            page.ClickButton();
-            page.VerifyResult(myText);
+            firstSeleniumInputPage.NavigateToPage();
+            firstSeleniumInputPage.InsertTextToInputField(myText);
+            firstSeleniumInputPage.ClickButton();
+            firstSeleniumInputPage.VerifyResult(myText);
         }
 
         [TestCase("2", "2", "4", TestName = "Testas 2 plius 2")]
@@ -44,19 +21,15 @@ namespace NewDemoProject.Test
         [TestCase("a", "b", "NaN", TestName = "Testas a plius b")]
         public static void TestSum(string firstInputValue, string secondInputValue, string resultValue)
         {
-            FirstSeleniumInputPage page = new FirstSeleniumInputPage(chromeDriver);
 
-            page.NavigateToPage();
-            page.InsertBothInputs(firstInputValue, secondInputValue);
+            firstSeleniumInputPage.NavigateToPage();
+            firstSeleniumInputPage.InsertBothInputs(firstInputValue, secondInputValue);
 
+            firstSeleniumInputPage.InsertTextToFieldA(firstInputValue);
 
-            page.InsertTextToFieldA(firstInputValue);
-
-
-            page.ClickTotalButton();
-            page.VerifyTotalResult(resultValue);
+            firstSeleniumInputPage.ClickTotalButton();
+            firstSeleniumInputPage.VerifyTotalResult(resultValue);
 
         }
-
     }
 }
