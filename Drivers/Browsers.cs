@@ -13,6 +13,7 @@ namespace MyDemo.Drivers
         Edge,
         Safari,
         Opera,
-        IE
+        IE,
+        IncognitoChrome
     }
 }
